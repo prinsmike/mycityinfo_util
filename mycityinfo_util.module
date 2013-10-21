@@ -28,7 +28,6 @@ function mycityinfo_util_menu() {
 		'title' => 'Choose your location',
 		'description' => 'Select the location where this business is located.',
 		'page callback'    => 'mycityinfo_util_page',
-		'page arguments'   => array('mycityinfo_location_select_page'),
 		'access arguments' => array('access content'),
 		);
 	return $items;
