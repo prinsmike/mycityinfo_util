@@ -28,16 +28,11 @@ function mycityinfo_util_menu() {
 
 	$items['location-select'] = array(
 		'title' => 'Choose your location',
-		'description' => 'Choose your location form the selection box.',
-		'page callback' => 'mycityinfo_util_page',
-		'access callback' => 'access content',
+		'description' => 'Select the location where this business is located.',
+		'page arguments'   => array('mycityinfo_location_select_page'),
+		'access arguments' => array('access content'),
 		);
 	return $items;
-}
-
-function mycityinfo_util_page() {
-	$output = theme('mycityinfo_location_select_page');
-	return $output;
 }
 
 function mycityinfo_util_block_info() {
