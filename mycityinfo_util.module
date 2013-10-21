@@ -15,7 +15,7 @@ function mycityinfo_util_help($path, $arg) {
 function mycityinfo_util_init() {
 	global $base_url;
 	if (($base_url == 'http://www.mycityinfo.co.za' || $base_url == 'https://www.mycityinfo.co.za') && current_path() == 'node/add/business') {
-		drupal_goto($base_url.'/location-select')
+		drupal_goto($base_url.'/location-select');
 	}
 
 }
