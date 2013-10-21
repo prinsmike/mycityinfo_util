@@ -1,0 +1,9 @@
+name = MyCityInfo Util
+description = Provides utility code for MyCityInfo.co.za.
+package = Website Makers
+project = "mycityinfo_util"
+
+core = 7.x
+
+files[] = mycityinfo_util.module
+files[] = mycityinfo_location_select.inc

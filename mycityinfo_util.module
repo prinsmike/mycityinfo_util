@@ -1,0 +1,91 @@
+<?php
+
+/**
+ * Implements hook_help().
+ */
+function mycityinfo_util_help($path, $arg) {
+  if ($path == 'admin/help#mycityinfo_util') {
+    return t('Provides utility code for MyCityInfo.co.za.');
+  }
+}
+
+/**
+ * Implements hook_init()
+ */
+function mycityinfo_util_init() {
+	global $base_url;
+	if (($base_url == 'http://www.mycityinfo.co.za' || $base_url == 'https://www.mycityinfo.co.za') && current_path() == 'node/add/business') {
+		drupal_goto($base_url.'/location-select')
+	}
+
+}
+
+/**
+ * Implements hook_menu()
+ */
+function mycityinfo_util_menu() {
+	$items = array();
+
+	$items['location-select'] = array(
+		'title' => 'Choose your location',
+		'description' => 'Choose your location form the selection box.',
+		'page callback' => 'mycityinfo_util_page',
+		'access callback' => 'access content',
+		);
+	return $items;
+}
+
+function mycityinfo_util_page() {
+	$output = theme('mycityinfo_location_select_page');
+	return $output;
+}
+
+function mycityinfo_util_block_info() {
+	$blocks['mycityinfo_location_select'] = array(
+		'info' => t('MyCityInfo Location Select'),
+		'cache' => DRUPAL_CACHE_PER_ROLE,
+		);
+	$blocks['mycityinfo_location_select_large'] = array(
+		'info' => t('MyCityInfo Location Select (Large)'),
+		'cache' => DRUPAL_CACHE_PER_ROLE,
+		); 
+	return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function mycityinfo_util_block_view($delta = '') {
+  switch ($delta) {
+    case 'mycityinfo_location_select':
+      $block['subject'] = t('');
+      $block['content'] = theme('mycityinfo_location_select_block');
+      return $block;
+      break;
+    case 'mycityinfo_location_select_large':
+    	$block['subject'] = t('');
+    	$block['content'] = theme('mycityinfo_location_select_large_block');
+    	return $block;
+    	break;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function mycityinfo_util_theme($existing, $type, $theme, $path) {
+  return array(
+  	'mycityinfo_location_select_page' => array(
+  		'path' => drupal_get_path('module', 'mycityinfo_util') . '/theme',
+  		'template' => 'mycityinfo-location-select-page',
+  	),
+    'mycityinfo_location_select_block' => array(
+      'path' => drupal_get_path('module', 'mycityinfo_util') . '/theme',
+      'template' => 'mycityinfo-location-select-block',
+    ),
+    'mycityinfo_location_select_large_block' => array(
+      'path' => drupal_get_path('module', 'mycityinfo_util') . '/theme',
+      'template' => 'mycityinfo-location-select-large-block',
+    ),
+  );
+}
