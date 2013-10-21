@@ -24,8 +24,6 @@ function mycityinfo_util_init() {
  * Implements hook_menu()
  */
 function mycityinfo_util_menu() {
-	$items = array();
-
 	$items['location-select'] = array(
 		'title' => 'Choose your location',
 		'description' => 'Select the location where this business is located.',
