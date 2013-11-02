@@ -20,7 +20,7 @@ function mycityinfo_util_init() {
 	}
   /* Include the statuses.js file on the homepage. */
   if ($base_path == '/') {
-    drupal_add_js(drupal_get_path('module', 'statuses') . '/resources/statuses.js',);
+    drupal_add_js(drupal_get_path('module', 'statuses') . '/resources/statuses.js');
   }
 
 }
